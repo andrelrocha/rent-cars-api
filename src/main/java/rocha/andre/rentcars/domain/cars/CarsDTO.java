@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-public record CarDTO(
+public record CarsDTO (
         @NotBlank
         String manufacturer,
         @NotBlank

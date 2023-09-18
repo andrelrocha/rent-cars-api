@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>rocha.andre</groupId>
-	<artifactId>rent-car</artifactId>
+	<artifactId>rent-cars</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rent-car</name>
-	<description>project for renting car</description>
+	<name>rent-cars</name>
+	<description>project for renting cars</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
