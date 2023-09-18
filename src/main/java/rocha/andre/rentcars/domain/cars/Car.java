@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Cars {
+public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,7 +25,7 @@ public class Cars {
     private Boolean available;
     private Boolean active;
 
-    public Cars(CarsDTO data) {
+    public Car(CarDTO data) {
         this.manufacturer = data.manufacturer();
         this.model = data.model();
         this.year = data.year();
@@ -35,7 +35,7 @@ public class Cars {
         this.active = data.active();
     }
 
-    public void updateData(CarsDTO data) {
+    public void updateData(CarDTO data) {
         if (data.color() != null) {
             this.color = data.color();
         }
