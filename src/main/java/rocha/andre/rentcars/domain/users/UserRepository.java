@@ -10,7 +10,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("""
             SELECT u FROM User u WHERE u.login = :login
             """)
-    User findByLoginToUpdate(String login);
+    User findByLoginToHandle(String login);
 
     boolean existsByLogin(String login);
 }

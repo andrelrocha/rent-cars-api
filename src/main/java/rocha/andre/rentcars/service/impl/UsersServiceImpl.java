@@ -6,8 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import rocha.andre.rentcars.domain.users.UseCase.CreateUserUseCase;
 import rocha.andre.rentcars.domain.users.UseCase.ForgotPasswordUseCase;
 import rocha.andre.rentcars.domain.users.UseCase.PerformLoginUseCase;
+import rocha.andre.rentcars.domain.users.UseCase.ResetPasswordUseCase;
 import rocha.andre.rentcars.domain.users.UserDTO;
 import rocha.andre.rentcars.domain.users.UserLoginDTO;
+import rocha.andre.rentcars.domain.users.UserResetPassDTO;
 import rocha.andre.rentcars.domain.users.UserReturnDTO;
 import rocha.andre.rentcars.infra.security.TokenJwtDTO;
 import rocha.andre.rentcars.service.UsersService;
@@ -21,6 +23,8 @@ public class UsersServiceImpl implements UsersService {
     private CreateUserUseCase createUserUseCase;
     @Autowired
     private ForgotPasswordUseCase forgotPasswordUseCase;
+    @Autowired
+    private ResetPasswordUseCase resetPasswordUseCase;
 
     @Override
     public TokenJwtDTO performLogin(UserDTO data) {
@@ -38,5 +42,11 @@ public class UsersServiceImpl implements UsersService {
     public String forgotPassword(UserLoginDTO data) {
         forgotPasswordUseCase.forgotPassword(data);
         return "Email successfully sent!";
+    }
+
+    @Override
+    public String resetPassword(UserResetPassDTO data) {
+        resetPasswordUseCase.resetPassword(data);
+        return "Password successfully updated!";
     }
 }

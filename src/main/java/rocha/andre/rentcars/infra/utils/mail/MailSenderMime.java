@@ -18,8 +18,6 @@ public class MailSenderMime {
 
     public String sendMail(MailDTO data) {
         try {
-            //APAGAR QUANDO FINALMENTE ENVIAR O EMAIL
-            System.out.println(data);
             var mimeMessage = javaMailSender.createMimeMessage();
             var mimeMessageHelper = new MimeMessageHelper(mimeMessage, false);
 

@@ -28,16 +28,15 @@ public class ForgotPasswordUseCase {
         }
 
         var token = generateEmailToken();
-        var now = LocalDateTime.now();
+        var now = LocalDateTime.now().plusHours(1);
         var forgotDTO = new UserForgotDTO(token, now);
 
-        var user = repository.findByLoginToUpdate(login);
+        var user = repository.findByLoginToHandle(login);
         user.forgotPassword(forgotDTO);
 
         var subject = "Forgot Password";
 
         var mailDTO = new MailDTO(subject, login, token);
-        System.out.println(mailDTO);
 
         mailSender.sendMail(mailDTO);
     }

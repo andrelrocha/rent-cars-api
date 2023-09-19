@@ -13,6 +13,7 @@ import rocha.andre.rentcars.domain.users.UseCase.CreateUserUseCase;
 import rocha.andre.rentcars.domain.users.UseCase.PerformLoginUseCase;
 import rocha.andre.rentcars.domain.users.UserDTO;
 import rocha.andre.rentcars.domain.users.UserLoginDTO;
+import rocha.andre.rentcars.domain.users.UserResetPassDTO;
 import rocha.andre.rentcars.domain.users.UserReturnDTO;
 import rocha.andre.rentcars.service.UsersService;
 
@@ -40,6 +41,13 @@ public class UsersController {
     @Transactional
     public ResponseEntity forgotPassword(@RequestBody UserLoginDTO data) {
         var stringSuccess= usersService.forgotPassword(data);
+        return ResponseEntity.ok(stringSuccess);
+    }
+
+    @PostMapping("/reset_password")
+    @Transactional
+    public ResponseEntity resetPassword(@RequestBody UserResetPassDTO data) {
+        var stringSuccess = usersService.resetPassword(data);
         return ResponseEntity.ok(stringSuccess);
     }
 }
