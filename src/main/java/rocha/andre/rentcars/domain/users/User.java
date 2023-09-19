@@ -9,8 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Table(name = "users")
@@ -29,7 +29,7 @@ public class User implements UserDetails {
     private String tokenEmail;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "token_expiration")
-    private Date tokenExpiration;
+    private LocalDateTime tokenExpiration;
 
     public User (UserDTO data) {
         this.login = data.login();
@@ -68,5 +68,10 @@ public class User implements UserDetails {
 
     public void setPassword(String encodedPassword) {
         this.password = encodedPassword;
+    }
+
+    public void forgotPassword(UserForgotDTO data) {
+        this.tokenEmail = data.tokenEmail();
+        this.tokenExpiration = data.tokenExpiration();
     }
 }

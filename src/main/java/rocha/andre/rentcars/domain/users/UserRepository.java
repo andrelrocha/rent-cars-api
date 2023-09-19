@@ -8,9 +8,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     UserDetails findByLogin(String login);
 
     @Query("""
-            SELECT CASE WHEN COUNT(u) > 0 THEN true 
-            ELSE false END 
-            FROM User u WHERE u.login = :login
+            SELECT u FROM User u WHERE u.login = :login
             """)
-    boolean userExistsByLogin(String login);
+    User findByLoginToUpdate(String login);
+
+    boolean existsByLogin(String login);
 }

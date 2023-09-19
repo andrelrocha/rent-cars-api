@@ -15,7 +15,7 @@ public class CreateUserUseCase {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserReturnDTO createUser(UserDTO data) {
-        boolean userExists = userRepository.userExistsByLogin(data.login());
+        boolean userExists = userRepository.existsByLogin(data.login());
 
         if (userExists) {
             throw new ValidationException("Email or user creation already exists in our database");
