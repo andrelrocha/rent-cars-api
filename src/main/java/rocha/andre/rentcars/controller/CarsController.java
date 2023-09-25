@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import rocha.andre.rentcars.domain.cars.CarDTO;
 import rocha.andre.rentcars.domain.cars.CarReturnDTO;
+import rocha.andre.rentcars.domain.cars.CarUpdateDTO;
 import rocha.andre.rentcars.service.CarsService;
 
 import java.net.URI;
@@ -41,5 +42,12 @@ public class CarsController {
         var newCar = carsService.createCar(data);
         URI uri = uriBuilder.path("/cars/{id}").buildAndExpand(newCar.id()).toUri();
         return ResponseEntity.created(uri).body(newCar);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<CarReturnDTO> updateCar(@RequestBody @Valid CarUpdateDTO data, @PathVariable Long id) {
+        var updatedCar = carsService.updateCar(data, id);
+        return ResponseEntity.ok(updatedCar);
     }
 }

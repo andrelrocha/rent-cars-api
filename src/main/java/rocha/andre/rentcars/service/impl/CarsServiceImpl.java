@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rocha.andre.rentcars.domain.cars.CarDTO;
 import rocha.andre.rentcars.domain.cars.CarReturnDTO;
+import rocha.andre.rentcars.domain.cars.CarUpdateDTO;
 import rocha.andre.rentcars.domain.cars.useCase.CreateCarUseCase;
 import rocha.andre.rentcars.domain.cars.useCase.GetAllCarUseCase;
 import rocha.andre.rentcars.domain.cars.useCase.GetCarByIdUseCase;
+import rocha.andre.rentcars.domain.cars.useCase.UpdateCarUseCase;
 import rocha.andre.rentcars.service.CarsService;
 
 @Service
@@ -21,6 +23,8 @@ public class CarsServiceImpl implements CarsService {
     private GetAllCarUseCase getAllCarUseCase;
     @Autowired
     private GetCarByIdUseCase getCarByIdUseCase;
+    @Autowired
+    private UpdateCarUseCase updateCarUseCase;
 
     @Override
     public CarReturnDTO createCar(CarDTO data) {
@@ -38,5 +42,11 @@ public class CarsServiceImpl implements CarsService {
     public CarReturnDTO getCarById(Long id) {
         var car = getCarByIdUseCase.getCarById(id);
         return car;
+    }
+
+    @Override
+    public CarReturnDTO updateCar(CarUpdateDTO data, Long id) {
+        var updatedCar = updateCarUseCase.updateCar(data, id);
+        return updatedCar;
     }
 }

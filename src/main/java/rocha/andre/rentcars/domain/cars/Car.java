@@ -35,7 +35,7 @@ public class Car {
         this.active = data.active();
     }
 
-    public void updateData(CarDTO data) {
+    public void updateData(CarUpdateDTO data) {
         if (data.color() != null) {
             this.color = data.color();
         }
