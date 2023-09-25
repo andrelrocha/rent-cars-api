@@ -11,4 +11,5 @@ public interface CarsService {
     public Page<CarReturnDTO> getAllCars(Pageable pageable);
     public CarReturnDTO getCarById(Long id);
     public CarReturnDTO updateCar(CarUpdateDTO data, Long id);
+    public void deleteCar(Long id);
 }

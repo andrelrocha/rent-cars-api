@@ -50,4 +50,11 @@ public class CarsController {
         var updatedCar = carsService.updateCar(data, id);
         return ResponseEntity.ok(updatedCar);
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity deleteCar(@PathVariable Long id) {
+        carsService.deleteCar(id);
+        return ResponseEntity.noContent().build();
+    }
 }

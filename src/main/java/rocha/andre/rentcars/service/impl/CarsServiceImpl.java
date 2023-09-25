@@ -8,10 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import rocha.andre.rentcars.domain.cars.CarDTO;
 import rocha.andre.rentcars.domain.cars.CarReturnDTO;
 import rocha.andre.rentcars.domain.cars.CarUpdateDTO;
-import rocha.andre.rentcars.domain.cars.useCase.CreateCarUseCase;
-import rocha.andre.rentcars.domain.cars.useCase.GetAllCarUseCase;
-import rocha.andre.rentcars.domain.cars.useCase.GetCarByIdUseCase;
-import rocha.andre.rentcars.domain.cars.useCase.UpdateCarUseCase;
+import rocha.andre.rentcars.domain.cars.useCase.*;
 import rocha.andre.rentcars.service.CarsService;
 
 @Service
@@ -19,6 +16,8 @@ import rocha.andre.rentcars.service.CarsService;
 public class CarsServiceImpl implements CarsService {
     @Autowired
     private CreateCarUseCase createCarUseCase;
+    @Autowired
+    private DeleteCarUseCase deleteCarUseCase;
     @Autowired
     private GetAllCarUseCase getAllCarUseCase;
     @Autowired
@@ -48,5 +47,10 @@ public class CarsServiceImpl implements CarsService {
     public CarReturnDTO updateCar(CarUpdateDTO data, Long id) {
         var updatedCar = updateCarUseCase.updateCar(data, id);
         return updatedCar;
+    }
+
+    @Override
+    public void deleteCar(Long id) {
+        deleteCarUseCase.deleteCar(id);
     }
 }
